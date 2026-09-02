@@ -78,5 +78,83 @@ export const machines: Product[] = [
     featured: true,
     status: 'active',
     enquiryEnabled: true
+  },
+  {
+    id: '4',
+    slug: 'gantry-plasma-cut-hd',
+    name: 'Gantry-Cut Heavy Duty',
+    category: 'Plasma Cutting',
+    model: 'SI-GP-200',
+    shortDescription: 'Large-format CNC gantry plasma cutting system for heavy industrial plate processing.',
+    description: 'The Gantry-Cut HD is designed for maximum productivity in heavy-duty environments. Featuring a massive working area and high-power plasma source, it is ideal for structural steel and heavy equipment manufacturing.',
+    images: ['/assets/machines/plasma-gantry.jpg'],
+    features: [
+      'Heavy-duty gantry structure',
+      'Dual drive system for high precision',
+      'Automatic torch height control',
+      'Industrial-grade CNC controller'
+    ],
+    specifications: [
+      { label: 'Plasma Source', value: '200A' },
+      { label: 'Working Area', value: '6000 x 3000 mm' },
+      { label: 'Cutting Thickness (MS)', value: 'Up to 32mm' },
+      { label: 'Cutting Thickness (SS)', value: 'Up to 25mm' }
+    ],
+    applications: ['Structural Engineering', 'Shipbuilding', 'Mining Equipment'],
+    featured: false,
+    status: 'active',
+    enquiryEnabled: true
+  },
+  {
+    id: '5',
+    slug: 'compact-fiber-laser-1000w',
+    name: 'Eco-Cut Series 1000W',
+    category: 'Laser Cutting',
+    model: 'SI-FL-1000',
+    shortDescription: 'Compact and efficient fiber laser cutting system for small to medium fabrication shops.',
+    description: 'The Eco-Cut 1000W offers an entry point into high-precision fiber laser cutting. Its compact footprint and energy-efficient operation make it perfect for smaller workshops looking to modernize their production.',
+    images: ['/assets/machines/laser-1000w.jpg'],
+    features: [
+      'Compact footprint',
+      'Low energy consumption',
+      'User-friendly interface',
+      'Easy installation'
+    ],
+    specifications: [
+      { label: 'Laser Power', value: '1000W' },
+      { label: 'Working Area', value: '2500 x 1300 mm' },
+      { label: 'Cutting Thickness (MS)', value: 'Up to 10mm' },
+      { label: 'Cutting Thickness (SS)', value: 'Up to 4mm' }
+    ],
+    applications: ['Kitchenware', 'Signage', 'Light Fabrication'],
+    featured: false,
+    status: 'active',
+    enquiryEnabled: true
+  },
+  {
+    id: '6',
+    slug: 'cnc-bending-press-100t',
+    name: 'Flex-Bend CNC Press',
+    category: 'CNC Bending',
+    model: 'SI-BP-100',
+    shortDescription: 'High-precision CNC hydraulic press brake for complex metal forming operations.',
+    description: 'The Flex-Bend 100T provides exceptional accuracy and repeatability in sheet metal bending. With multi-axis backgauge control and an intuitive CNC interface, complex forming becomes simple and efficient.',
+    images: ['/assets/machines/cnc-bending.jpg'],
+    features: [
+      'Multi-axis CNC backgauge',
+      'Automatic crowning system',
+      'High-precision hydraulic valves',
+      'Quick-change tooling system'
+    ],
+    specifications: [
+      { label: 'Bending Force', value: '100 Tons' },
+      { label: 'Bending Length', value: '3100 mm' },
+      { label: 'Distance Between Uprights', value: '2600 mm' },
+      { label: 'Stroke', value: '200 mm' }
+    ],
+    applications: ['Control Panels', 'Cabinet Making', 'Automotive Panels'],
+    featured: true,
+    status: 'active',
+    enquiryEnabled: true
   }
 ];
