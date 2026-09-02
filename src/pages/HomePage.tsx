@@ -1,8 +1,13 @@
+import { HeroSection } from '@/components/home/HeroSection';
+import { FeaturedMachinesSection } from '@/components/home/FeaturedMachinesSection';
+import { CompanyIntroSection } from '@/components/home/CompanyIntroSection';
+
 export default function HomePage() {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold">Home Page</h1>
-      <p className="mt-4">Content coming soon...</p>
+    <div>
+      <HeroSection />
+      <FeaturedMachinesSection />
+      <CompanyIntroSection />
     </div>
   );
 }

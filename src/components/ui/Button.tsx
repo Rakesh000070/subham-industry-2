@@ -1,14 +1,18 @@
 import { ButtonHTMLAttributes, forwardRef } from 'react';
+import { Slot } from '@radix-ui/react-slot';
 import { cn } from '@/utils/cn';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   isLoading?: boolean;
+  asChild?: boolean;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = 'primary', size = 'md', isLoading, disabled, children, ...props }, ref) => {
+  ({ className, variant = 'primary', size = 'md', isLoading, asChild = false, disabled, children, ...props }, ref) => {
+    const Comp = asChild ? Slot : 'button';
+    
     const variants = {
       primary: 'bg-primary text-white hover:bg-primary-dark shadow-sm',
       secondary: 'bg-charcoal text-white hover:bg-neutral-800 shadow-sm',
@@ -23,7 +27,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     };
 
     return (
-      <button
+      <Comp
         ref={ref}
         disabled={disabled || isLoading}
         className={cn(
@@ -34,11 +38,17 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         {...props}
       >
-        {isLoading ? (
-          <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-        ) : null}
-        {children}
-      </button>
+        {asChild ? (
+          children
+        ) : (
+          <>
+            {isLoading && (
+              <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+            )}
+            {children}
+          </>
+        )}
+      </Comp>
     );
   }
 );
