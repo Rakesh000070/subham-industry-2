@@ -1,11 +1,47 @@
-<div align="center">
+# Subham Industries Website
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+Official corporate website for Subham Industries, built with React, TypeScript, and Vite.
 
-  <h1>Built with AI Studio</h2>
+## Project Structure
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+- `src/components`: Reusable UI components.
+- `src/pages`: Main page components.
+- `src/data`: Static data and configuration constants.
+- `src/types`: TypeScript interfaces and type definitions.
+- `src/assets`: Images, icons, and other static assets.
+- `src/styles`: Global styles and Tailwind configuration extensions.
+- `src/utils`: Helper functions and utility modules.
+- `public`: Static assets served directly.
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+## Tech Stack
 
-</div>
+- **Framework**: React 19
+- **Build Tool**: Vite
+- **Language**: TypeScript (Strict Mode)
+- **Styling**: Tailwind CSS v4
+- **Routing**: React Router DOM
+- **Animations**: Motion (formerly Framer Motion)
+
+## Getting Started
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Run development server:
+   ```bash
+   npm run dev
+   ```
+
+3. Build for production:
+   ```bash
+   npm run build
+   ```
+
+## Design Palette
+
+- **Primary Red**: `#D32F2F`
+- **Charcoal**: `#1A1A1A`
+- **Neutral Grey**: `#757575`, `#E0E0E0`, `#F5F5F5`
+- **White**: `#FFFFFF`

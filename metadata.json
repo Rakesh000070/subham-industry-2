@@ -1,0 +1,8 @@
+{
+  "name": "Subham Industries",
+  "description": "The official corporate website for Subham Industries, showcasing industrial solutions and services.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
