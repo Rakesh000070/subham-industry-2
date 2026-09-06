@@ -1,6 +1,5 @@
 import { Container } from '@/components/ui/Container';
 import { SectionHeading } from '@/components/common/SectionHeading';
-import { Breadcrumb } from '@/components/common/Breadcrumb';
 import { 
   Hammer, 
   CheckSquare, 
@@ -29,13 +28,12 @@ const iconMap = {
 export default function ServicesPage() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      <Breadcrumb />
       
       <section className="py-20 bg-neutral-50 border-b border-neutral-100">
         <Container>
           <SectionHeading
             title="Industrial Services & Support"
-            subtitle="We provide a comprehensive ecosystem of technical services to ensure your production remains uninterrupted and efficient."
+            subtitle="At Subham Industries, our commitment to your success extends far beyond the sale. We provide a complete lifecycle support ecosystem for your machinery."
             underline={true}
           />
           
@@ -46,7 +44,7 @@ export default function ServicesPage() {
               </div>
               <div>
                 <p className="font-bold text-charcoal">Guaranteed Support</p>
-                <p className="text-sm text-neutral-500">Service SLA commitment</p>
+                <p className="text-sm text-neutral-500">Tier-1 service SLA commitment</p>
               </div>
             </div>
             <div className="bg-white p-8 rounded-3xl shadow-sm border border-neutral-100 flex items-center space-x-4">
@@ -55,7 +53,7 @@ export default function ServicesPage() {
               </div>
               <div>
                 <p className="font-bold text-charcoal">Expert Technicians</p>
-                <p className="text-sm text-neutral-500">Certified field engineers</p>
+                <p className="text-sm text-neutral-500">Certified field & application engineers</p>
               </div>
             </div>
             <div className="bg-white p-8 rounded-3xl shadow-sm border border-neutral-100 flex items-center space-x-4">
@@ -64,7 +62,7 @@ export default function ServicesPage() {
               </div>
               <div>
                 <p className="font-bold text-charcoal">Rapid Response</p>
-                <p className="text-sm text-neutral-500">Minimizing machine downtime</p>
+                <p className="text-sm text-neutral-500">Minimizing critical machine downtime</p>
               </div>
             </div>
           </div>
@@ -73,7 +71,7 @@ export default function ServicesPage() {
 
       <section className="py-24">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {services.map((service) => {
               const Icon = iconMap[service.icon as keyof typeof iconMap] || Settings;
               return (
@@ -86,16 +84,18 @@ export default function ServicesPage() {
                       {service.name}
                     </h3>
                     <p className="text-neutral-500 leading-relaxed mb-6">
-                      {service.description}
+                      {service.details || service.description}
                     </p>
-                    <ul className="space-y-3 mb-8">
-                      {['Professional approach', 'Industry-standard protocols', 'Comprehensive documentation'].map((item, i) => (
-                        <li key={i} className="flex items-center text-sm font-bold text-charcoal/60">
-                          <ArrowRight className="h-3 w-3 mr-2 text-primary" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
+                    {service.benefits && (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+                        {service.benefits.map((benefit, i) => (
+                          <div key={i} className="flex items-center text-xs font-bold text-charcoal/70 uppercase tracking-tight">
+                            <ArrowRight className="h-3 w-3 mr-2 text-primary" />
+                            {benefit}
+                          </div>
+                        ))}
+                      </div>
+                    )}
                     <Button variant="outline" className="group/btn" asChild>
                       <Link to="/contact">
                         Inquire About {service.name}
@@ -110,21 +110,21 @@ export default function ServicesPage() {
         </Container>
       </section>
 
-      {/* AMC Banner */}
+      {/* Support CTA Banner */}
       <section className="py-24 bg-charcoal text-white overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-primary/10 -skew-x-12 transform translate-x-1/2" />
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-primary/5 -skew-x-12 transform translate-x-1/2" />
         <Container>
-          <div className="max-w-3xl relative z-10">
-            <h2 className="text-4xl font-black mb-6 leading-tight">Maximize Uptime with our <span className="text-primary">AMC Plans</span></h2>
-            <p className="text-xl text-white/40 mb-10">
-              Annual Maintenance Contracts (AMC) provide you with peace of mind, regular health checks, and priority support for all your Subham Industries machinery.
+          <div className="max-w-4xl mx-auto text-center relative z-10">
+            <h2 className="text-5xl font-black mb-8 leading-tight">Need Immediate Technical <span className="text-primary">Support?</span></h2>
+            <p className="text-xl text-white/50 mb-12 max-w-2xl mx-auto">
+              Our technical hotline is available for urgent troubleshooting and spare parts inquiries. Contact our expert team today.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="px-10" asChild>
-                <Link to="/contact">Request AMC Details</Link>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Button size="lg" className="px-12 py-8 text-xl font-bold" asChild>
+                <Link to="/contact">Open Support Ticket</Link>
               </Button>
-              <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 px-10" asChild>
-                <a href="tel:+910000000000">Talk to Support</a>
+              <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 px-12 py-8 text-xl font-bold" asChild>
+                <a href="tel:+910000000000">Call Technical Team</a>
               </Button>
             </div>
           </div>

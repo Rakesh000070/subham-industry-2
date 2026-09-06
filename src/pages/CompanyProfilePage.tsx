@@ -1,6 +1,5 @@
 import { Container } from '@/components/ui/Container';
 import { SectionHeading } from '@/components/common/SectionHeading';
-import { Breadcrumb } from '@/components/common/Breadcrumb';
 import { 
   Briefcase, 
   Settings, 
@@ -23,7 +22,6 @@ export default function CompanyProfilePage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      <Breadcrumb />
       
       <section className="py-20 bg-neutral-50 border-b border-neutral-100">
         <Container>

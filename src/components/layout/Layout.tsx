@@ -10,6 +10,9 @@ interface LayoutProps {
 
 export function Layout({ children }: LayoutProps) {
   const { pathname } = useLocation();
+  const isHomePage = pathname === '/';
+  const isListingPage = ['/machines', '/services', '/about', '/contact', '/profile'].includes(pathname);
+  const showBreadcrumb = !isHomePage && !isListingPage;
 
   // Scroll restoration
   useEffect(() => {
@@ -19,7 +22,7 @@ export function Layout({ children }: LayoutProps) {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <Breadcrumb />
+      {showBreadcrumb && <Breadcrumb />}
       <main className="flex-grow">
         {children}
       </main>

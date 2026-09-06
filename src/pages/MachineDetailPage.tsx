@@ -9,10 +9,14 @@ import {
   Mail,
   Phone,
   MessageSquare,
-  ArrowRight
+  ArrowRight,
+  Cpu,
+  Wrench,
+  Activity,
+  Layers,
+  ChevronRight
 } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
-import { Breadcrumb } from '@/components/common/Breadcrumb';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { ImagePlaceholder } from '@/components/common/ImagePlaceholder';
@@ -30,8 +34,6 @@ export default function MachineDetailPage() {
     const found = machines.find(m => m.slug === slug);
     if (found) {
       setMachine(found);
-    } else {
-      // Small delay to prevent flashing if needed, but here we can just check
     }
   }, [slug]);
 
@@ -49,10 +51,10 @@ export default function MachineDetailPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      <Breadcrumb />
+      
 
       {/* Product Hero Section */}
-      <section className="py-12 lg:py-20">
+      <section className="py-12 lg:py-20 border-b border-neutral-100">
         <Container>
           <div className="mb-8">
             <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="mb-4 -ml-2 text-neutral-500 hover:text-primary">
@@ -106,7 +108,7 @@ export default function MachineDetailPage() {
                 </p>
               </div>
 
-              {/* Key Specs Grid */}
+              {/* Quick Specs Grid */}
               <div className="grid grid-cols-2 gap-6 mb-10 p-8 rounded-3xl bg-neutral-50 border border-neutral-100">
                 {machine.specifications.slice(0, 4).map((spec) => (
                   <div key={spec.label} className="space-y-1">
@@ -146,49 +148,144 @@ export default function MachineDetailPage() {
         </Container>
       </section>
 
-      {/* Technical Details Tabs/Sections */}
-      <section className="py-20 border-t border-neutral-100">
+      {/* Key Features Section */}
+      <section className="py-20 bg-white">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-            {/* Features */}
-            <div className="space-y-8">
-              <div className="flex items-center space-x-3 text-primary">
-                <Settings className="h-6 w-6" />
-                <h2 className="text-2xl font-black uppercase tracking-tight text-charcoal">Key Features</h2>
+          <div className="flex items-center space-x-3 text-primary mb-10">
+            <Settings className="h-8 w-8" />
+            <h2 className="text-3xl font-black uppercase tracking-tight text-charcoal">Key Features</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {machine.features.map((feature, idx) => (
+              <div key={idx} className="p-8 rounded-3xl bg-neutral-50 border border-neutral-100 hover:border-primary/20 hover:bg-white hover:shadow-xl transition-all group">
+                <div className="bg-primary/10 w-12 h-12 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                  <CheckCircle2 className="h-6 w-6 text-primary group-hover:text-white" />
+                </div>
+                <p className="text-lg font-bold text-charcoal leading-snug">
+                  {feature}
+                </p>
               </div>
-              <ul className="space-y-4">
-                {machine.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start">
-                    <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mr-3 mt-0.5" />
-                    <span className="text-neutral-600 font-medium">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            ))}
+          </div>
+        </Container>
+      </section>
 
-            {/* Applications */}
-            <div className="space-y-8">
-              <div className="flex items-center space-x-3 text-primary">
-                <Maximize2 className="h-6 w-6" />
-                <h2 className="text-2xl font-black uppercase tracking-tight text-charcoal">Applications</h2>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {machine.applications.map((app, idx) => (
-                  <span 
-                    key={idx} 
-                    className="px-4 py-2 bg-neutral-50 text-neutral-600 rounded-full text-sm font-bold border border-neutral-200"
-                  >
-                    {app}
-                  </span>
-                ))}
-              </div>
+      {/* Components & Major Systems Section */}
+      {machine.components && machine.components.length > 0 && (
+        <section className="py-20 bg-neutral-50 border-y border-neutral-100">
+          <Container>
+            <div className="flex items-center space-x-3 text-primary mb-10">
+              <Cpu className="h-8 w-8" />
+              <h2 className="text-3xl font-black uppercase tracking-tight text-charcoal">Major Components</h2>
             </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {machine.components.map((component, idx) => (
+                <div key={idx} className="flex items-center p-6 bg-white rounded-2xl shadow-sm border border-neutral-100">
+                  <div className="bg-charcoal p-4 rounded-xl mr-6">
+                    <Layers className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-1">{component.name}</h4>
+                    <p className="text-xl font-black text-charcoal">{component.details}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
 
-            {/* Support */}
-            <div className="space-y-8 bg-charcoal p-8 rounded-3xl text-white">
-              <h2 className="text-2xl font-black uppercase tracking-tight">Support Services</h2>
-              <div className="space-y-6">
-                <div className="flex items-center space-x-4">
+      {/* Technical Specifications Section */}
+      <section className="py-20 bg-white">
+        <Container>
+          <div className="flex items-center space-x-3 text-primary mb-10">
+            <Activity className="h-8 w-8" />
+            <h2 className="text-3xl font-black uppercase tracking-tight text-charcoal">Technical Specifications</h2>
+          </div>
+          <div className="bg-neutral-50 rounded-3xl overflow-hidden border border-neutral-100 shadow-sm">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-charcoal text-white">
+                  <th className="px-8 py-5 text-sm font-black uppercase tracking-widest">Parameter</th>
+                  <th className="px-8 py-5 text-sm font-black uppercase tracking-widest">Value / Specification</th>
+                </tr>
+              </thead>
+              <tbody>
+                {machine.specifications.map((spec, idx) => (
+                  <tr key={idx} className={cn(
+                    "border-b border-neutral-100 transition-colors hover:bg-white",
+                    idx % 2 === 0 ? "bg-neutral-50/50" : "bg-white"
+                  )}>
+                    <td className="px-8 py-5 text-sm font-bold text-neutral-400 uppercase tracking-wider w-1/3 border-r border-neutral-100">
+                      {spec.label}
+                    </td>
+                    <td className="px-8 py-5 text-lg font-black text-charcoal">
+                      {spec.value}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Container>
+      </section>
+
+      {/* Applications Section */}
+      <section className="py-20 bg-neutral-50 border-y border-neutral-100">
+        <Container>
+          <div className="flex items-center space-x-3 text-primary mb-10">
+            <Maximize2 className="h-8 w-8" />
+            <h2 className="text-3xl font-black uppercase tracking-tight text-charcoal">Industrial Applications</h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {machine.applications.map((app, idx) => (
+              <div key={idx} className="group p-8 bg-white rounded-3xl shadow-sm border border-neutral-100 hover:shadow-xl transition-all text-center">
+                <div className="w-16 h-16 bg-neutral-50 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/10 transition-colors">
+                  <ChevronRight className="h-6 w-6 text-primary" />
+                </div>
+                <h4 className="text-lg font-black text-charcoal uppercase tracking-tight">{app}</h4>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Accessories Section */}
+      {machine.accessories && machine.accessories.length > 0 && (
+        <section className="py-20 bg-white">
+          <Container>
+            <div className="flex items-center space-x-3 text-primary mb-10">
+              <Wrench className="h-8 w-8" />
+              <h2 className="text-3xl font-black uppercase tracking-tight text-charcoal">Standard Accessories</h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {machine.accessories.map((accessory, idx) => (
+                <div key={idx} className="flex items-start space-x-5 p-8 bg-neutral-50 rounded-3xl border border-neutral-100">
+                  <div className="bg-primary p-3 rounded-xl shrink-0">
+                    <CheckCircle2 className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-black text-charcoal mb-2">{accessory.name}</h4>
+                    <p className="text-sm text-neutral-500 leading-relaxed">{accessory.details}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
+
+      {/* Support CTA Sidebar (Mobile Integrated) */}
+      <section className="py-20 bg-charcoal text-white">
+        <Container>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+            <div className="max-w-2xl text-center md:text-left">
+              <h2 className="text-4xl font-black mb-6 leading-tight">Ready to Upgrade Your Production?</h2>
+              <p className="text-xl text-white/40 mb-10">
+                Contact our technical experts for a personalized walkthrough or to discuss custom configurations for the {machine.name}.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6">
+                <div className="flex items-center justify-center md:justify-start space-x-4">
                   <div className="bg-primary p-3 rounded-xl">
                     <MessageSquare className="h-5 w-5 text-white" />
                   </div>
@@ -197,7 +294,7 @@ export default function MachineDetailPage() {
                     <p className="font-bold">24/7 Expert Assist</p>
                   </div>
                 </div>
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center justify-center md:justify-start space-x-4">
                   <div className="bg-primary p-3 rounded-xl">
                     <Mail className="h-5 w-5 text-white" />
                   </div>
@@ -207,38 +304,14 @@ export default function MachineDetailPage() {
                   </div>
                 </div>
               </div>
-              <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10" asChild>
-                <Link to="/services">Learn About Support</Link>
-              </Button>
             </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Full Specifications Table */}
-      <section className="py-20 bg-neutral-50">
-        <Container>
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-black text-charcoal mb-12 text-center">Technical Specifications</h2>
-            <div className="bg-white rounded-3xl overflow-hidden shadow-sm border border-neutral-100">
-              <table className="w-full text-left">
-                <tbody>
-                  {machine.specifications.map((spec, idx) => (
-                    <tr key={idx} className={cn("border-b border-neutral-50", idx % 2 === 0 ? "bg-white" : "bg-neutral-50/50")}>
-                      <td className="px-8 py-5 text-sm font-bold text-neutral-400 uppercase tracking-wider w-1/3">
-                        {spec.label}
-                      </td>
-                      <td className="px-8 py-5 text-base font-bold text-charcoal">
-                        {spec.value}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <Button size="lg" className="px-12 py-8 text-xl font-bold" asChild>
+              <Link to="/contact">Request Detailed Proposal</Link>
+            </Button>
           </div>
         </Container>
       </section>
     </div>
   );
 }
+

@@ -45,10 +45,10 @@ export function Footer() {
             <h4 className="text-white font-bold mb-6 text-lg">Categories</h4>
             <ul className="space-y-4 text-sm text-neutral-400">
               <li><Link to="/machines/laser-cutting" className="hover:text-white transition-colors">Laser Cutting Machines</Link></li>
-              <li><Link to="/machines/fiber-laser" className="hover:text-white transition-colors">Fiber Laser Marking</Link></li>
+              <li><Link to="/machines/cnc-marking" className="hover:text-white transition-colors">CNC Marking Systems</Link></li>
+              <li><Link to="/machines/plasma-cutting" className="hover:text-white transition-colors">Plasma Cutting Machines</Link></li>
               <li><Link to="/machines/cnc-bending" className="hover:text-white transition-colors">CNC Bending Machines</Link></li>
-              <li><Link to="/machines/welding" className="hover:text-white transition-colors">Laser Welding Systems</Link></li>
-              <li><Link to="/machines/engraving" className="hover:text-white transition-colors">Industrial Engraving</Link></li>
+              <li><Link to="/machines/spm" className="hover:text-white transition-colors">Special Purpose Machines</Link></li>
             </ul>
           </div>
 

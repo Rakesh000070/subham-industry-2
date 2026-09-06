@@ -15,7 +15,7 @@ export interface Product {
   specifications: Specification[];
   applications: string[];
   components?: MachineComponent[];
-  accessories?: string[];
+  accessories?: MachineComponent[];
   brochureUrl?: string;
   featured?: boolean;
   status: 'active' | 'inactive';
@@ -53,6 +53,8 @@ export interface Service {
   description: string;
   /** Icon name from lucide-react or custom SVG path */
   icon?: string;
+  benefits?: string[];
+  details?: string;
 }
 
 /**
@@ -102,4 +104,15 @@ export interface Address {
   state: string;
   zipCode: string;
   country: string;
+}
+
+/**
+ * Represents an item in the gallery.
+ */
+export interface GalleryItem {
+  id: string;
+  title: string;
+  category: 'machines' | 'installations' | 'factory' | 'projects';
+  imageUrl: string;
+  description?: string;
 }

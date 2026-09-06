@@ -22,6 +22,17 @@ export const machines: Product[] = [
       { label: 'Cutting Thickness (MS)', value: 'Up to 20mm' },
       { label: 'Cutting Thickness (SS)', value: 'Up to 10mm' }
     ],
+    components: [
+      { name: 'Laser Source', details: 'Raycus/IPG Fiber Laser' },
+      { name: 'Cutting Head', details: 'Raytools Auto-focus' },
+      { name: 'Control System', details: 'Cypcut Professional CNC' },
+      { name: 'Servo Motors', details: 'Yaskawa High-precision' }
+    ],
+    accessories: [
+      { name: 'Chiller Unit', details: 'Industrial Water Cooling System' },
+      { name: 'Voltage Stabilizer', details: 'High-capacity Servo Controlled' },
+      { name: 'Dust Collector', details: 'Automatic Fume Extraction' }
+    ],
     applications: ['Automotive', 'Aerospace', 'Sheet Metal Fabrication'],
     featured: true,
     status: 'active',

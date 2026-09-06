@@ -1,6 +1,5 @@
 import { Container } from '@/components/ui/Container';
 import { SectionHeading } from '@/components/common/SectionHeading';
-import { Breadcrumb } from '@/components/common/Breadcrumb';
 import { 
   Target, 
   Eye, 
@@ -39,7 +38,6 @@ export default function AboutPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      <Breadcrumb />
       
       {/* Intro Section */}
       <section className="py-20 bg-neutral-50 border-b border-neutral-100">

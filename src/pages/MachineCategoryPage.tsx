@@ -1,7 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { Container } from '@/components/ui/Container';
 import { SectionHeading } from '@/components/common/SectionHeading';
-import { Breadcrumb } from '@/components/common/Breadcrumb';
 import { MachineCard } from '@/components/machines/MachineCard';
 import { machines } from '@/data/machines';
 import { categories } from '@/data/categories';
@@ -39,7 +38,6 @@ export default function MachineCategoryPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      <Breadcrumb />
       
       <section className="py-16 bg-neutral-50 border-b border-neutral-100">
         <Container>
