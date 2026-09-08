@@ -25,6 +25,8 @@ import { useEffect, useState } from 'react';
 import { Product } from '@/types';
 import { cn } from '@/utils/cn';
 
+import { EnquiryForm } from '@/components/contact/EnquiryForm';
+
 export default function MachineDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
@@ -119,11 +121,11 @@ export default function MachineDetailPage() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="flex-1 py-8 text-lg font-bold" asChild>
-                  <Link to="/contact">
-                    Request a Quote
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
+                <Button size="lg" className="flex-1 py-8 text-lg font-bold" onClick={() => {
+                  document.getElementById('enquiry-section')?.scrollIntoView({ behavior: 'smooth' });
+                }}>
+                  Request a Quote
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
                 <Button size="lg" variant="outline" className="py-8 text-lg font-bold" asChild>
                   <a href="tel:+910000000000">
@@ -275,39 +277,17 @@ export default function MachineDetailPage() {
         </section>
       )}
 
-      {/* Support CTA Sidebar (Mobile Integrated) */}
-      <section className="py-20 bg-charcoal text-white">
+      {/* Enquiry Form Section */}
+      <section id="enquiry-section" className="py-24 bg-neutral-50 border-t border-neutral-100">
         <Container>
-          <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-            <div className="max-w-2xl text-center md:text-left">
-              <h2 className="text-4xl font-black mb-6 leading-tight">Ready to Upgrade Your Production?</h2>
-              <p className="text-xl text-white/40 mb-10">
-                Contact our technical experts for a personalized walkthrough or to discuss custom configurations for the {machine.name}.
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-black text-charcoal uppercase tracking-tight mb-4">Request a Quote</h2>
+              <p className="text-neutral-500 max-w-2xl mx-auto text-lg">
+                Fill out the form below to receive a detailed technical and commercial proposal for the {machine.name}.
               </p>
-              <div className="flex flex-col sm:flex-row gap-6">
-                <div className="flex items-center justify-center md:justify-start space-x-4">
-                  <div className="bg-primary p-3 rounded-xl">
-                    <MessageSquare className="h-5 w-5 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-white/40 font-bold uppercase tracking-wider">Technical Help</p>
-                    <p className="font-bold">24/7 Expert Assist</p>
-                  </div>
-                </div>
-                <div className="flex items-center justify-center md:justify-start space-x-4">
-                  <div className="bg-primary p-3 rounded-xl">
-                    <Mail className="h-5 w-5 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-white/40 font-bold uppercase tracking-wider">Email Inquiry</p>
-                    <p className="font-bold">support@subham.com</p>
-                  </div>
-                </div>
-              </div>
             </div>
-            <Button size="lg" className="px-12 py-8 text-xl font-bold" asChild>
-              <Link to="/contact">Request Detailed Proposal</Link>
-            </Button>
+            <EnquiryForm preSelectedMachine={machine.category} />
           </div>
         </Container>
       </section>

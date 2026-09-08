@@ -5,7 +5,7 @@ import { categories } from '@/data/categories';
 import { Factory, ArrowRight, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Link } from 'react-router-dom';
-import { cn } from '@/lib/utils';
+import { cn } from '@/utils/cn';
 
 export default function ApplicationsPage() {
   return (

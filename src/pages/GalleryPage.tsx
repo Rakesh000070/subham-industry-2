@@ -6,6 +6,7 @@ import { cn } from '@/utils/cn';
 import { Maximize2, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { galleryItems } from '@/data/gallery';
 import { motion, AnimatePresence } from 'motion/react';
+import { Link } from 'react-router-dom';
 
 export default function GalleryPage() {
   const [filter, setFilter] = useState<'all' | 'machines' | 'installations' | 'factory' | 'projects'>('all');
