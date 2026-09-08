@@ -6,6 +6,7 @@ import { categories } from '@/data/categories';
 import { getMachineBySlug } from '@/utils/queryParams';
 import { cn } from '@/utils/cn';
 import { Enquiry } from '@/types';
+import { submitEnquiry } from '@/services/api';
 
 interface EnquiryFormProps {
   preSelectedMachine?: string;
@@ -111,20 +112,14 @@ export function EnquiryForm({ preSelectedMachine, onSubmit, className, showSideb
       setStatus('submitting');
       
       try {
-        const response = await fetch('/api/enquiries', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        });
+        const result = await submitEnquiry(formData);
 
-        const result = await response.json();
-
-        if (response.ok && result.success) {
+        if (result.success) {
           console.log('Enquiry submitted successfully:', result);
           if (onSubmit) onSubmit(formData);
           setStatus('success');
+          // Success message: "Thank you! Our sales team will contact you shortly with detailed information."
+          // This is handled in the success view below
         } else {
           throw new Error(result.message || 'Failed to submit enquiry');
         }
@@ -149,7 +144,7 @@ export function EnquiryForm({ preSelectedMachine, onSubmit, className, showSideb
         </div>
         <h3 className="text-3xl font-black text-charcoal uppercase tracking-tight">Technical Inquiry Sent</h3>
         <p className="text-neutral-500 max-w-sm mx-auto leading-relaxed text-lg">
-          Your request for {machineData ? machineData.name : 'information'} has been logged. Our technical sales team will follow up with a detailed proposal within 24 hours.
+          Thank you! Our sales team will contact you shortly with detailed information regarding {machineData ? machineData.name : 'your inquiry'}.
         </p>
         <div className="pt-8 border-t border-neutral-100 mt-8">
           <p className="text-[10px] font-black text-neutral-400 uppercase tracking-widest mb-6">Need immediate assistance?</p>
@@ -376,10 +371,15 @@ export function EnquiryForm({ preSelectedMachine, onSubmit, className, showSideb
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="bg-danger/10 p-4 rounded-xl flex items-center gap-3 text-danger text-sm font-bold"
+                  className="bg-danger/10 p-6 rounded-2xl space-y-3"
                 >
-                  <AlertCircle className="h-5 w-5" />
-                  Failed to send inquiry. Please check your connection and try again.
+                  <div className="flex items-center gap-3 text-danger text-sm font-bold">
+                    <AlertCircle className="h-5 w-5" />
+                    Failed to send inquiry. Please check your connection and try again.
+                  </div>
+                  <p className="text-[10px] font-black text-danger/60 uppercase tracking-widest pl-8">
+                    Alternatively, contact us at: <a href="tel:+910000000000" className="underline">+91 [VERIFY]</a> or <a href="mailto:sales@subhamindustries.com" className="underline">sales@subhamindustries.com</a>
+                  </p>
                 </motion.div>
               )}
             </AnimatePresence>
