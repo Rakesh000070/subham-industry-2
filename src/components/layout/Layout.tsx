@@ -11,7 +11,7 @@ interface LayoutProps {
 export function Layout({ children }: LayoutProps) {
   const { pathname } = useLocation();
   const isHomePage = pathname === '/';
-  const isListingPage = ['/machines', '/services', '/about', '/contact', '/profile'].includes(pathname);
+  const isListingPage = ['/machines', '/services', '/about', '/contact', '/company-profile'].includes(pathname);
   const showBreadcrumb = !isHomePage && !isListingPage;
 
   // Scroll restoration

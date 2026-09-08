@@ -10,6 +10,8 @@ import ApplicationsPage from './pages/ApplicationsPage';
 import GalleryPage from './pages/GalleryPage';
 import CompanyProfilePage from './pages/CompanyProfilePage';
 import ContactPage from './pages/ContactPage';
+import PrivacyPage from './pages/PrivacyPage';
+import TermsPage from './pages/TermsPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
@@ -26,6 +28,8 @@ export default function App() {
           <Route path="/applications" element={<ApplicationsPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/company-profile" element={<CompanyProfilePage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/terms" element={<TermsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
